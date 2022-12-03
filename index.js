@@ -1,6 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import authRouter from './routes/auth.js';
+import userRouter from './routes/users.js';
+import hotelRouter from './routes/hotels.js';
+import roomsRouter from './routes/rooms.js';
 import mongoose from 'mongoose';
 
 const app = express();
@@ -23,7 +26,12 @@ mongoose.connection.on('connected', () => {
   console.log('Connected to Mongo');
 })
 
-app.use('/auth', authRouter);
+app.use(express.json())
+
+app.use('/api/auth', authRouter);
+app.use('/api/users',userRouter);
+app.use('/api/hotels', hotelRouter);
+app.use('/api/rooms', roomsRouter);
 
 app.listen(8000, () => {
   connect();
