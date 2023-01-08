@@ -4,6 +4,7 @@ import authRouter from './routes/auth.js';
 import userRouter from './routes/users.js';
 import hotelRouter from './routes/hotels.js';
 import roomsRouter from './routes/rooms.js';
+import cookieParser from 'cookie-parser'
 import mongoose from 'mongoose';
 
 const app = express();
@@ -26,6 +27,7 @@ mongoose.connection.on('connected', () => {
   console.log('Connected to Mongo');
 })
 
+app.use(cookieParser())
 app.use(express.json())
 
 app.use('/api/auth', authRouter);
